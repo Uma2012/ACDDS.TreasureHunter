@@ -32,7 +32,7 @@ namespace ACDDS.TreasureHunter.Api
                 app.UseCors(policy => policy
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .WithOrigins("http://localhost:8080")
+                    .WithOrigins("https://localhost:44342/")
                     .AllowCredentials());
             }
 
