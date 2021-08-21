@@ -12,7 +12,7 @@
 
         public int Id { get; }
         public string Name { get; }
-        public int HitPoints { get; }
-        public int Luck { get; }
+        public int HitPoints { get; set; }
+        public int Luck { get; set; }
     }
 }

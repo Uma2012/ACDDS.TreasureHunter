@@ -59,6 +59,8 @@ public class TreasureHunterService
             throw new InsufficientFundsException("Equipment value exceeds the character's wealth.");
 
         _characterWealth -= equipment.Value;
+        _character.HitPoints += equipment.HpModifier;
+        _character.Luck += equipment.LuckModifier;
         _shopEquipment.Remove(equipment);
         _characterEquipment.Add(equipment);
     }
