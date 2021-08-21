@@ -1,0 +1,40 @@
+﻿@model Web.Models.CharacterResponse
+
+@{
+    ViewData["Title"] = "Character";
+}
+
+<h1>Character Details</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HitPoints)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HitPoints)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Luck)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Luck)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wealth)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wealth)
+        </dd>
+    </dl>
+</div>
+
+<a asp-action="Equipment" asp-controller="Character" class="btn btn-info">View Equipments</a>
