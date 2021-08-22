@@ -49,8 +49,8 @@
             <td>
                 <b> @Html.DisplayFor(modelItem => item.Value)</b>
             </td>
-            <td>              
-                <a asp-action="Purchase" asp-controller="Character" class="btn btn-info" asp-route-equipmentId="@item.Id">Buy</a>
+            <td>                
+                <input type="button" value="Buy"class="btn btn-info" onclick="location.href='@Url.Action("Purchase","Character",new { equipmentId=@item.Id})'" />
             </td>
         </tr>
 }
