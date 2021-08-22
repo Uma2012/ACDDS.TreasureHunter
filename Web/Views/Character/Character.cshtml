@@ -23,7 +23,7 @@
     </div>
 }
 
-<h1>Avatar Details</h1>
+<h3>Avatar Details</h3>
 
 <div>
 
@@ -53,7 +53,42 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Wealth)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Equipment)         
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Equipment.Count)
+        </dd>
     </dl>
+        @if (Model.Equipment.Count > 0)
+        {
+        <p><b> Equipment Owned Details:</b>
+        </p>    
+         
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>HpModifier</th>
+                    <th>LuckModifier</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Equipment)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.HpModifier</td>
+                        <td>@item.LuckModifier</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        
+        }
+   
 </div>
 
-<input type="button" class="btn btn-info" value="View Equipment" onclick="location.href='@Url.Action("Equipment","Character")'"/>
+@*<input type="button" class="btn btn-info" value="Shop Equipment" onclick="location.href='@Url.Action("Equipment","Character")'"/>*@
