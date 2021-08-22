@@ -33,15 +33,13 @@ namespace Web.Controllers
             
            var response= await _treasureHunterService.PurchaseEquipment(purchaseRequest);
 
-            if (response == "OK")
-               // ViewBag.Message = "Equipment Purchased";
+            if (response == "OK")               
             TempData["OkMessage"]= "Equipment Purchased";
-            else if (response == "BadRequest")
-               // ViewBag.Message = "Insufficient fund";
+            else if (response == "BadRequest")               
                TempData["BRMessage"]= "Insufficient fund";
-            else if (response == "NotFound")
-                //ViewBag.Message = "Equipment Not found";
+            else if (response == "NotFound")                
                 TempData["NFMessage"]= "Equipment Not found";
+
             return RedirectToAction("Character","Character");
         }
 

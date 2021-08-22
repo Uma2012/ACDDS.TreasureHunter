@@ -4,10 +4,10 @@
     ViewData["Title"] = "Equipment";
 }
 
-<h1>Equipment Store</h1>
+<h3>Equipment Store</h3>
 
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
            
@@ -23,7 +23,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.LuckModifier)
             </th>
-            <th>
+            <th style="color:green">
                 @Html.DisplayNameFor(model => model.Value)
             </th>
 
@@ -46,7 +46,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LuckModifier)
             </td>
-            <td>
+            <td style="color:green">
                 <b> @Html.DisplayFor(modelItem => item.Value)</b>
             </td>
             <td>                
