@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Models;
+using ACDDS.TreasureHunter.Web.Models;
 
-namespace Web.Services
+namespace ACDDS.TreasureHunter.Web.Services
 {
     public interface ITreasureHunterService
     {

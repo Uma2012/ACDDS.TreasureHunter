@@ -8,8 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Repository;
-using Web.Services;
+using ACDDS.TreasureHunter.Web.Repository;
+using ACDDS.TreasureHunter.Web.Services;
 
 namespace Web
 {

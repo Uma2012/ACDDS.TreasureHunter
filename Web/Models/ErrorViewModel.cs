@@ -1,6 +1,6 @@
 using System;
 
-namespace Web.Models
+namespace ACDDS.TreasureHunter.Web.Models
 {
     public class ErrorViewModel
     {

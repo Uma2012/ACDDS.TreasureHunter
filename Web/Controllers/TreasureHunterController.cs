@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Models;
-using Web.Services;
+using ACDDS.TreasureHunter.Web.Models;
+using ACDDS.TreasureHunter.Web.Services;
 
-namespace Web.Controllers
+namespace ACDDS.TreasureHunter.Web.Controllers
 {
     public class TreasureHunterController : Controller
     {

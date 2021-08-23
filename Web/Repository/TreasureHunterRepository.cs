@@ -7,9 +7,9 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Web.Models;
+using ACDDS.TreasureHunter.Web.Models;
 
-namespace Web.Repository
+namespace ACDDS.TreasureHunter.Web.Repository
 {
     public class TreasureHunterRepository : ITreasureHunterRepository
     {

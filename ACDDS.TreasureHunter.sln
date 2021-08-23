@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACDDS.TreasureHunter.Api", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACDDS.TreasureHunter.Core", "ACDDS.TreasureHunter.Core\ACDDS.TreasureHunter.Core.csproj", "{5C625ABC-D64C-4CE3-BA95-3EB7C9221EB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{117F4C97-B3AD-462E-ACAD-12B6F13EA951}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACDDS.TreasureHunter.Web", "Web\ACDDS.TreasureHunter.Web.csproj", "{117F4C97-B3AD-462E-ACAD-12B6F13EA951}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
