@@ -8,11 +8,11 @@ using Web.Services;
 
 namespace Web.Controllers
 {
-    public class CharacterController : Controller
+    public class TreasureHunterController : Controller
     {
         private readonly ITreasureHunterService _treasureHunterService;
 
-        public CharacterController(ITreasureHunterService treasureHunterService)
+        public TreasureHunterController(ITreasureHunterService treasureHunterService)
         {
             this._treasureHunterService = treasureHunterService;
         }
@@ -40,7 +40,7 @@ namespace Web.Controllers
             else if (response == "NotFound")                
                 TempData["NFMessage"]= "Equipment Not found";
 
-            return RedirectToAction("Character","Character");
+            return RedirectToAction("Character","TreasureHunter");
         }
 
     }

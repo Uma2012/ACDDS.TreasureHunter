@@ -4,7 +4,7 @@
     ViewData["Title"] = "Equipment";
 }
 
-<h3>Equipment Store</h3>
+<h3 style="color:darkgoldenrod">Equipment Store</h3>
 
 
 <table class="table table-striped">
@@ -50,9 +50,12 @@
                 <b> @Html.DisplayFor(modelItem => item.Value)</b>
             </td>
             <td>                
-                <input type="button" value="Buy"class="btn btn-info" onclick="location.href='@Url.Action("Purchase","Character",new { equipmentId=@item.Id})'" />
+                <input type="button" value="Buy"class="btn btn-info" onclick="location.href='@Url.Action("Purchase","TreasureHunter",new { equipmentId=@item.Id})'" />
             </td>
         </tr>
 }
     </tbody>
 </table>
+<div class="text-center">
+    <input type="button" value="Back"  class="btn btn-secondary" onclick="history.back()" />
+</div>

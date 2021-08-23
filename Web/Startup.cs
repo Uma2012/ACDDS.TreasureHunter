@@ -54,7 +54,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Character}/{action=Character}/{id?}");
+                    pattern: "{controller=TreasureHunter}/{action=Character}/{id?}");
             });
         }
     }

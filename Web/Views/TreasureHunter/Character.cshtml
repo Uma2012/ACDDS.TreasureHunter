@@ -23,18 +23,15 @@
     </div>
 }
 
-<h3>Avatar Details</h3>
+<h4 style="text-align:center; color:brown;font-family:cursive">Get ready before an adventure!</h4>
+<p>Hi <span style="color:olive"><b>@Model.Name!</b></span></p>
+<p>Below listed are all you have!!. Go ahead and <strong>Shop Equipment</strong> to make yourself stronger!!</p>
+
 
 <div>
 
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <dl class="row">       
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.HitPoints)
         </dt>
@@ -60,13 +57,12 @@
             @Html.DisplayFor(model => model.Equipment.Count)
         </dd>
     </dl>
+   
         @if (Model.Equipment.Count > 0)
-        {
-        <p><b> Equipment Owned Details:</b>
-        </p>    
-         
+         {
+            <p style="color:darkcyan"><b> Equipment Owned Details:</b></p>             
 
-        <table class="table">
+          <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -76,19 +72,17 @@
             </thead>
             <tbody>
                 @foreach (var item in Model.Equipment)
-                {
+                 {
                     <tr>
                         <td>@item.Name</td>
                         <td>@item.HpModifier</td>
                         <td>@item.LuckModifier</td>
                     </tr>
 
-                }
+                 }
             </tbody>
-        </table>
+          </table>        
+         }
         
-        }
-   
 </div>
 
-@*<input type="button" class="btn btn-info" value="Shop Equipment" onclick="location.href='@Url.Action("Equipment","Character")'"/>*@
