@@ -58,8 +58,7 @@ public class TreasureHunterService
     }
 
     public void Purchase(string equipmentId)
-    {
-        _character.ErrorInsufficientValue = null;
+    {        
         var equipment = _shopEquipment.SingleOrDefault(e => e.Id == equipmentId);
         if (equipment == null)
             throw new EquipmentNotFoundException(equipmentId);
