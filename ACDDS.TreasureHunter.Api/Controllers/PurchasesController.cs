@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace ACDDS.TreasureHunter.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     public class PurchasesController : ControllerBase
     {
         private readonly ILogger<CharacterController> _logger;
@@ -32,6 +32,7 @@ namespace ACDDS.TreasureHunter.Api.Controllers
                 {
                     EquipmentId = request.EquipmentId
                 };
+                
                 return Ok(response);
             }
             catch (EquipmentNotFoundException)
@@ -42,7 +43,8 @@ namespace ACDDS.TreasureHunter.Api.Controllers
             }
             catch (InsufficientFundsException)
             {
-                return BadRequest(new { 
+                return BadRequest(new
+                {
                     Message = "Insufficient funds."
                 });
             }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using ACDDS.TreasureHunter.Api.Extensions;
 using ACDDS.TreasureHunter.Api.Models.Response;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Logging;
 namespace ACDDS.TreasureHunter.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     public class CharacterController : ControllerBase
     {
         private readonly ILogger<CharacterController> _logger;
@@ -23,9 +24,9 @@ namespace ACDDS.TreasureHunter.Api.Controllers
         }
 
         [HttpGet()]
-        public CharacterResponse GetCharacter()
+        public CharacterResponse GetCharacter(int id)
         {
-            var character = _treasureHunterService.GetCharacter();
+            var character = _treasureHunterService.GetCharacter(id);
             var characterWealth = _treasureHunterService.GetCharacterWealth();
             var characterEquipment = _treasureHunterService
                 .GetCharacterEquipment()
@@ -38,6 +39,16 @@ namespace ACDDS.TreasureHunter.Api.Controllers
                 Wealth = characterWealth,
                 Equipment = characterEquipment
             };
+        }
+
+        [HttpGet()]
+        public List<CharactersResponse> GetCharacters()
+        {
+            var characters = _treasureHunterService
+                .GetCharacters()
+                .Select(ModelConversions.ToCharactersResponseModel)
+                .ToList();
+            return characters;
         }
     }
 }

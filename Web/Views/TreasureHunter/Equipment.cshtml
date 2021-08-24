@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ACDDS.TreasureHunter.Web.Models.EquipmentResponse>
+
+@{
+    ViewData["Title"] = "Equipment";
+}
+
+<h5 style="color:darkcyan">Equipment Store</h5>
+<br />
+<br />
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HpModifier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuckModifier)
+            </th>
+            <th style="color:green">
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+
+            <th></th>            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HpModifier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuckModifier)
+            </td>
+            <td style="color:green">
+                <b> @Html.DisplayFor(modelItem => item.Value)</b>
+            </td>
+            <td>                
+                <input type="button" value="Buy"class="btn btn-info" onclick="location.href='@Url.Action("Purchase","TreasureHunter",new { equipmentId=@item.Id})'" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div class="text-center">
+    <input type="button" value="Back"  class="btn btn-secondary" onclick="history.back()" />
+</div>
