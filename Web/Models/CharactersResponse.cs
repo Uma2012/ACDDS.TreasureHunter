@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace ACDDS.TreasureHunter.Web.Models
 {
-    public class CharacterResponse
+    public class CharactersResponse
     {
-        [Display(Name="Character")]
+        public int Id { get; set; }
+        [Display(Name = "Character")]
         public string Name { get; set; }
         public int HitPoints { get; set; }
         public int Luck { get; set; }
         public int Wealth { get; set; }
-
-        [Display(Name = "Equipment Owned")]
-        public IList<EquipmentResponse> Equipment { get; set; }
-        
     }
 }

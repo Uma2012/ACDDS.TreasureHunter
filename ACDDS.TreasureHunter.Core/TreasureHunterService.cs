@@ -21,7 +21,7 @@ public class TreasureHunterService
         { 
             new Character(0, "Ray", 6, 9, 200),
             new Character(1, "Atlas", 10, 3, 100),
-            new Character(2, "Momo", 30, 0, 1000)
+            new Character(2, "Momo", 0, 0, 1000)
         };
        
         _characterEquipment = new List<Equipment>();
@@ -34,7 +34,10 @@ public class TreasureHunterService
             new Equipment("Diamond Tiara", EquipmentType.Armor, hpModifier: 1, luckModifier: 1, value: 1000)
         };
     }
-
+    public IList<Character> GetCharacters()
+    {   
+        return _characters;
+    }
     public Character GetCharacter(int id)
     {
         var character = _characters.SingleOrDefault(c => c.Id ==id);              

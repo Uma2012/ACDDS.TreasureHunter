@@ -20,6 +20,11 @@ namespace ACDDS.TreasureHunter.Web.Services
             return await _treasureHunterRepository.GetCharacterAttributes(id);
         }
 
+        public async Task<List<CharactersResponse>> GetCharacters()
+        {
+            return await _treasureHunterRepository.GetCharacters();
+        }
+
         public async Task<IList<EquipmentResponse>> GetEquipmentList()
         {
             return await _treasureHunterRepository.GetEquipmentList();

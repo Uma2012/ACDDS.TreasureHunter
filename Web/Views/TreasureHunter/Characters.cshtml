@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ACDDS.TreasureHunter.Web.Models.CharactersResponse>
+
+@{
+    ViewData["Title"] = "Characters";
+}
+
+<h6 style="color:darkcyan">Choose an <b>Character</b> to proceed...</h6>
+<br />
+<br />
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {         
+
+            <div class="col-lg-4 mb-5 d-flex justify-content-center">
+                <div class="card shadow" style="width: 18rem;">                    
+
+                    <div class="card-body col text-center">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Hit Points: @item.HitPoints</p>
+                        <p class="card-text">Luck: @item.Luck</p>
+                        <p class="card-text">Wealth: @item.Wealth</p>
+                        <input type="button" value="Choose" class="btn btn-info" onclick="location.href='@Url.Action("Character","TreasureHunter",new { id=@item.Id})'" />
+
+                        <br />
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+
+</div>

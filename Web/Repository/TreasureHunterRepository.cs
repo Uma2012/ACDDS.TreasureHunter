@@ -28,6 +28,14 @@ namespace ACDDS.TreasureHunter.Web.Repository
             return JsonConvert.DeserializeObject<CharacterResponse>(character);
         }
 
+        public async Task<List<CharactersResponse>> GetCharacters()
+        {
+            var response = await _httpClient.GetAsync("/api/character/GetCharacters");
+            var character = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<List<CharactersResponse>>(character);
+        }
+
         public async Task<IList<EquipmentResponse>> GetEquipmentList()
         {
             var response = await _httpClient.GetAsync("/api/equipment/GetEquipment");

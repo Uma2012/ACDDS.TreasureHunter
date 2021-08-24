@@ -17,5 +17,16 @@ namespace ACDDS.TreasureHunter.Api.Extensions
                 Value = src.Value
             };
         }
+        public static CharactersResponse ToCharactersResponseModel(this Character src)
+        {
+            return new CharactersResponse()
+            {
+                Id = src.Id,
+                Name = src.Name,
+                HitPoints = src.HitPoints,
+                Luck = src.Luck,
+                Wealth = src.Wealth
+            };
+        }
     }
 }

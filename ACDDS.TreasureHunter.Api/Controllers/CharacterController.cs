@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using ACDDS.TreasureHunter.Api.Extensions;
 using ACDDS.TreasureHunter.Api.Models.Response;
@@ -38,6 +39,16 @@ namespace ACDDS.TreasureHunter.Api.Controllers
                 Wealth = characterWealth,
                 Equipment = characterEquipment
             };
+        }
+
+        [HttpGet()]
+        public List<CharactersResponse> GetCharacters()
+        {
+            var characters = _treasureHunterService
+                .GetCharacters()
+                .Select(ModelConversions.ToCharactersResponseModel)
+                .ToList();
+            return characters;
         }
     }
 }
