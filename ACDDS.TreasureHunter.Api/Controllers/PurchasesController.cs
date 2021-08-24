@@ -23,23 +23,17 @@ namespace ACDDS.TreasureHunter.Api.Controllers
         }
 
         [HttpPost()]
-        public ActionResult<CharacterResponse> CreatePurchase([FromBody] PurchaseRequest request)
+        public IActionResult CreatePurchase([FromBody] PurchaseRequest request)
         {
             try
             {
-               var responseCharacter= _treasureHunterService.Purchase(request.EquipmentId);
-                //var response = new PurchaseResponse()
-                //{
-                //    EquipmentId = request.EquipmentId
-                //};
-                //if(responseCharacter.ErrorInsufficientValue!=null)
-                //{
-                //    return BadRequest(new
-                //    {
-                //        Message="Insuffient funds."
-                //    });
-                //}
-                return Ok(responseCharacter);
+                _treasureHunterService.Purchase(request.EquipmentId);
+                var response = new PurchaseResponse()
+                {
+                    EquipmentId = request.EquipmentId
+                };
+                
+                return Ok(response);
             }
             catch (EquipmentNotFoundException)
             {
@@ -47,12 +41,13 @@ namespace ACDDS.TreasureHunter.Api.Controllers
                     Message = "Equipment not found."
                 });
             }
-            //catch (InsufficientFundsException)
-            //{
-            //    return BadRequest(new { 
-            //        Message = "Insufficient funds."
-            //    });
-            //}
+            catch (InsufficientFundsException)
+            {
+                return BadRequest(new
+                {
+                    Message = "Insufficient funds."
+                });
+            }
         }
     }
 }

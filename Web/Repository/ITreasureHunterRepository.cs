@@ -10,6 +10,6 @@ namespace ACDDS.TreasureHunter.Web.Repository
     {
         Task<CharacterResponse> GetCharacterAttributes(int id);
         Task<IList<EquipmentResponse>> GetEquipmentList();
-        Task<PurchaseResponse> PurchaseEquipment(PurchaseRequest purchaseRequest);
+        Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest);
     }
 }

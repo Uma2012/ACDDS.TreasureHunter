@@ -22,37 +22,32 @@ namespace ACDDS.TreasureHunter.Web.Repository
 
         public async Task<CharacterResponse> GetCharacterAttributes(int id)
         {
-            var request = await _httpClient.GetAsync("/api/character/GetCharacter?id="+id);
-            var response = await request.Content.ReadAsStringAsync();
+            var response = await _httpClient.GetAsync("/api/character/GetCharacter?id="+id);
+            var character = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<CharacterResponse>(response);
+            return JsonConvert.DeserializeObject<CharacterResponse>(character);
         }
 
         public async Task<IList<EquipmentResponse>> GetEquipmentList()
         {
-            var request = await _httpClient.GetAsync("/api/equipment/GetEquipment");
-            var response = await request.Content.ReadAsStringAsync();
+            var response = await _httpClient.GetAsync("/api/equipment/GetEquipment");
+            var equipment = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<IList<EquipmentResponse>>(response);
+            return JsonConvert.DeserializeObject<IList<EquipmentResponse>>(equipment);
         }
 
-        public async Task<PurchaseResponse> PurchaseEquipment(PurchaseRequest purchaseRequest)
+        public async Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest)
         {
             JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
             {
                 ReferenceHandler = ReferenceHandler.Preserve,
                 WriteIndented = true
             };
-            var request = await _httpClient.PostAsJsonAsync("/api/purchases/CreatePurchase", purchaseRequest, options);
+            var response = await _httpClient.PostAsJsonAsync("/api/purchases/CreatePurchase", purchaseRequest, options);
 
-            var responseStatusCode=  request.StatusCode.ToString();
+            var responseStatusCode=  response.StatusCode.ToString();
 
-            var response = await request.Content.ReadAsStringAsync();
-            
-            var purchaseResponse= JsonConvert.DeserializeObject<PurchaseResponse>(response);
-            purchaseResponse.StatusResponse = responseStatusCode;
-            return purchaseResponse;
-
+            return responseStatusCode;
 
         }
     }

@@ -4,14 +4,7 @@ namespace ACDDS.TreasureHunter.Core.Models
 {
     public class Character
     {
-
-        //public Character()
-        //{
-        //    Id = 0;
-        //    Name = "Atlas";
-        //    HitPoints = 10;
-        //    Luck = 3;
-        //}
+       
         public Character()
         {
 
@@ -23,7 +16,6 @@ namespace ACDDS.TreasureHunter.Core.Models
             HitPoints = hitPoints;
             Luck = luck;
             Wealth = wealth;
-
         }
 
         public int Id { get; set; }
@@ -32,6 +24,6 @@ namespace ACDDS.TreasureHunter.Core.Models
         public int Luck { get; set; }
         public int Wealth { get; set; }
         public IList<Equipment> Equipment { get; set; }
-        public string ErrorInsufficientValue { get; set; }
+        
     }
 }

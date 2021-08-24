@@ -10,12 +10,8 @@ public class TreasureHunterService
     private readonly ILogger<TreasureHunterService> _logger;
     
     private readonly IList<Character> _characters;
-    private Character _character;
-    //private int _characterWealth;
-    //private int _characterHitPoints;
-    //private int _characterLuck;
+    private Character _character;    
     private readonly IList<Equipment> _characterEquipment;
-
     private readonly IList<Equipment> _shopEquipment;
 
     public TreasureHunterService(ILogger<TreasureHunterService> logger)
@@ -41,17 +37,13 @@ public class TreasureHunterService
 
     public Character GetCharacter(int id)
     {
-        var character = _characters.SingleOrDefault(c => c.Id ==id);
-        //_characterWealth = character.Wealth;
-        //_characterHitPoints = character.HitPoints;
-        //_characterLuck = character.Luck;        
+        var character = _characters.SingleOrDefault(c => c.Id ==id);              
         _character = character;
-        return character;
+        return _character;
     }
 
     public int GetCharacterWealth()
-    {
-        //return _characterWealth;    
+    {           
         return _character.Wealth;
     }
 
@@ -65,47 +57,21 @@ public class TreasureHunterService
         return _shopEquipment;
     }
 
-    public Character Purchase(string equipmentId)
+    public void Purchase(string equipmentId)
     {
+        _character.ErrorInsufficientValue = null;
         var equipment = _shopEquipment.SingleOrDefault(e => e.Id == equipmentId);
         if (equipment == null)
             throw new EquipmentNotFoundException(equipmentId);
-        if (_character.Wealth < equipment.Value)
-        {
-            //var character1 = new Character();
-            //character1.HitPoints = _characterHitPoints;
-            //character1.Luck = _characterLuck;
-            //character1.Wealth = _characterWealth;
-            //character1.Equipment = _characterEquipment;
-            //character1.ErrorInsufficientValue = "Insufficient Fund";
-            //return character1;
-            // throw new InsufficientFundsException("Equipment value exceeds the character's wealth.", character1);
-            _character.ErrorInsufficientValue = "Insufficient Fund";
-            return _character;
-        }
-
-        //_characterWealth -= equipment.Value;
-        //_characterHitPoints += equipment.HpModifier;
-        //_characterLuck += equipment.LuckModifier;
-        //_shopEquipment.Remove(equipment);
-        //_characterEquipment.Add(equipment);
-
-        //var character = new Character();
-        //character.HitPoints = _characterHitPoints;
-        //character.Luck = _characterLuck;
-        //character.Wealth = _characterWealth;
-        //character.Equipment = _characterEquipment;
-        //return character;        
+        if (_character.Wealth < equipment.Value)                    
+            throw new InsufficientFundsException("Equipment value exceeds the character's wealth.");                     
 
         _character.Wealth -= equipment.Value;
         _character.HitPoints += equipment.HpModifier;
         _character.Luck += equipment.LuckModifier;
         _character.Equipment = _characterEquipment;
         _shopEquipment.Remove(equipment);
-        _characterEquipment.Add(equipment);
-
-
-        return _character;
+        _characterEquipment.Add(equipment);      
 
     }
 }

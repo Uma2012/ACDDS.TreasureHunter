@@ -25,7 +25,7 @@ namespace ACDDS.TreasureHunter.Web.Services
             return await _treasureHunterRepository.GetEquipmentList();
         }
 
-        public async Task<PurchaseResponse> PurchaseEquipment(PurchaseRequest purchaseRequest)
+        public async Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest)
         {
             return await _treasureHunterRepository.PurchaseEquipment(purchaseRequest);
         }
