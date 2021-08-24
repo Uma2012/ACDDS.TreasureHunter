@@ -25,8 +25,14 @@ namespace ACDDS.TreasureHunter.Web.Controllers
             return View(characters);
         }
         public async Task<ActionResult<CharacterResponse>> Character(int id)
-        {               
-            _characterId = id;
+        {
+            //Keeping the character id consistent
+            if (_characterId == -1)
+            {
+                _characterId = id;
+                TempData["CharacterId"] = id;
+                TempData.Keep("CharacterId");
+            }
             var character = await _treasureHunterService.GetCharacter(_characterId);            
             return View(character);
         }
