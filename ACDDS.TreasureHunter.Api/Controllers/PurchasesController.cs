@@ -23,16 +23,16 @@ namespace ACDDS.TreasureHunter.Api.Controllers
         }
 
         [HttpPost()]
-        public IActionResult CreatePurchase([FromBody] PurchaseRequest request)
+        public ActionResult<CharacterResponse> CreatePurchase([FromBody] PurchaseRequest request)
         {
             try
             {
-                _treasureHunterService.Purchase(request.EquipmentId);
-                var response = new PurchaseResponse()
-                {
-                    EquipmentId = request.EquipmentId
-                };
-                return Ok(response);
+               var responseCharacter= _treasureHunterService.Purchase(request.EquipmentId);
+                //var response = new PurchaseResponse()
+                //{
+                //    EquipmentId = request.EquipmentId
+                //};
+                return Ok(responseCharacter);
             }
             catch (EquipmentNotFoundException)
             {

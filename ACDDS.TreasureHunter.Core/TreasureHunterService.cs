@@ -9,8 +9,10 @@ public class TreasureHunterService
 {
     private readonly ILogger<TreasureHunterService> _logger;
     
-    private readonly Character _character;
+    private readonly IList<Character> _character;    
     private int _characterWealth;
+    private int _characterHitPoints;
+    private int _characterLuck;
     private readonly IList<Equipment> _characterEquipment;
 
     private readonly IList<Equipment> _shopEquipment;
@@ -18,8 +20,13 @@ public class TreasureHunterService
     public TreasureHunterService(ILogger<TreasureHunterService> logger)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        _character = new Character();
-        _characterWealth = 100;
+        _character = new List<Character>()
+        { 
+            new Character(0, "Ray", 6, 9, 200),
+            new Character(1, "Atlas", 10, 3, 100),
+            new Character(2, "Momo", 30, 0, 1000)
+        };
+       
         _characterEquipment = new List<Equipment>();
         _shopEquipment = new List<Equipment>()
         {
@@ -30,19 +37,23 @@ public class TreasureHunterService
         };
     }
 
-    public Character GetCharacter()
+    public Character GetCharacter(int id)
     {
-        return _character;
+        var character = _character.SingleOrDefault(c => c.Id ==id);
+        _characterWealth = character.Wealth;
+        _characterHitPoints = character.HitPoints;
+        _characterLuck = character.Luck;        
+        return character;
     }
 
     public int GetCharacterWealth()
     {
-        return _characterWealth;
+         return _characterWealth;      
     }
 
     public IEnumerable<Equipment> GetCharacterEquipment()
     {
-        return _characterEquipment;
+        return _characterEquipment;        
     }
 
     public IEnumerable<Equipment> GetShopEquipment()
@@ -50,18 +61,36 @@ public class TreasureHunterService
         return _shopEquipment;
     }
 
-    public void Purchase(string equipmentId)
+    public Character Purchase(string equipmentId)
     {
         var equipment = _shopEquipment.SingleOrDefault(e => e.Id == equipmentId);
         if (equipment == null)
             throw new EquipmentNotFoundException(equipmentId);
         if (_characterWealth < equipment.Value)
-            throw new InsufficientFundsException("Equipment value exceeds the character's wealth.");
+        {            
+            var character1 = new Character();
+            character1.HitPoints = _characterHitPoints;
+            character1.Luck = _characterLuck;
+            character1.Wealth = _characterWealth;
+            character1.Equipment = _characterEquipment;
+            character1.ErrorInsufficientValue = "Insufficient Fund";
+            return character1;
+           // throw new InsufficientFundsException("Equipment value exceeds the character's wealth.", character1);
+            
+        }
 
         _characterWealth -= equipment.Value;
-        _character.HitPoints += equipment.HpModifier;
-        _character.Luck += equipment.LuckModifier;
+        _characterHitPoints += equipment.HpModifier;
+        _characterLuck += equipment.LuckModifier;
         _shopEquipment.Remove(equipment);
         _characterEquipment.Add(equipment);
+
+        var character = new Character();
+        character.HitPoints = _characterHitPoints;
+        character.Luck = _characterLuck;
+        character.Wealth = _characterWealth;
+        character.Equipment = _characterEquipment;
+        return character;        
+
     }
 }

@@ -57,13 +57,13 @@
             @Html.DisplayFor(model => model.Equipment.Count)
         </dd>
     </dl>
-   
-        @if (Model.Equipment.Count > 0)
+   <br />
+        @if (Model.Equipment!=null && Model.Equipment.Count>0)
          {
             <p style="color:darkcyan"><b> Equipment Owned Details:</b></p>             
 
-          <table class="table">
-            <thead>
+          <table class="table table-sm">
+            <thead class="table-secondary">
                 <tr>
                     <th>Name</th>
                     <th>HpModifier</th>

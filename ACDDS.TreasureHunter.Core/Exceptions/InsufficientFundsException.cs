@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ACDDS.TreasureHunter.Core.Models;
+using System;
 
 namespace ACDDS.TreasureHunter.Core.Exceptions
 {

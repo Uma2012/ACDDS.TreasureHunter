@@ -23,9 +23,9 @@ namespace ACDDS.TreasureHunter.Api.Controllers
         }
 
         [HttpGet()]
-        public CharacterResponse GetCharacter()
+        public CharacterResponse GetCharacter(int id)
         {
-            var character = _treasureHunterService.GetCharacter();
+            var character = _treasureHunterService.GetCharacter(id);
             var characterWealth = _treasureHunterService.GetCharacterWealth();
             var characterEquipment = _treasureHunterService
                 .GetCharacterEquipment()

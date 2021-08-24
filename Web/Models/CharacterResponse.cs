@@ -15,5 +15,7 @@ namespace ACDDS.TreasureHunter.Web.Models
 
         [Display(Name = "Equipment Owned")]
         public IList<EquipmentResponse> Equipment { get; set; }
+        //public string StatusResponse { get; set; }
+        //public string ErrorInsufficientValue { get; set; }
     }
 }

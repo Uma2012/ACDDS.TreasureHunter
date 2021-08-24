@@ -15,9 +15,9 @@ namespace ACDDS.TreasureHunter.Web.Services
         {
             this._treasureHunterRepository = treasureHunterRepository;
         }
-        public async Task<CharacterResponse> GetCharacterAttributes()
+        public async Task<CharacterResponse> GetCharacterAttributes(int id)
         {
-            return await _treasureHunterRepository.GetCharacterAttributes();
+            return await _treasureHunterRepository.GetCharacterAttributes(id);
         }
 
         public async Task<IList<EquipmentResponse>> GetEquipmentList()
@@ -25,7 +25,7 @@ namespace ACDDS.TreasureHunter.Web.Services
             return await _treasureHunterRepository.GetEquipmentList();
         }
 
-        public async Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest)
+        public async Task<PurchaseResponse> PurchaseEquipment(PurchaseRequest purchaseRequest)
         {
             return await _treasureHunterRepository.PurchaseEquipment(purchaseRequest);
         }

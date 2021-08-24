@@ -8,8 +8,8 @@ namespace ACDDS.TreasureHunter.Web.Repository
 {
     public interface ITreasureHunterRepository
     {
-        Task<CharacterResponse> GetCharacterAttributes();
+        Task<CharacterResponse> GetCharacterAttributes(int id);
         Task<IList<EquipmentResponse>> GetEquipmentList();
-        Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest);
+        Task<PurchaseResponse> PurchaseEquipment(PurchaseRequest purchaseRequest);
     }
 }

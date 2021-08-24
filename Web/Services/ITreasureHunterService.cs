@@ -8,8 +8,8 @@ namespace ACDDS.TreasureHunter.Web.Services
 {
     public interface ITreasureHunterService
     {
-        Task<CharacterResponse> GetCharacterAttributes();
+        Task<CharacterResponse> GetCharacterAttributes(int id);
         Task<IList<EquipmentResponse>> GetEquipmentList();
-        Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest);
+        Task<PurchaseResponse> PurchaseEquipment(PurchaseRequest purchaseRequest);
     }
 }
