@@ -27,7 +27,7 @@ namespace ACDDS.TreasureHunter.Web.Controllers
         public async Task<ActionResult<CharacterResponse>> Character(int id)
         {               
             _characterId = id;
-            var character = await _treasureHunterService.GetCharacterAttributes(_characterId);            
+            var character = await _treasureHunterService.GetCharacter(_characterId);            
             return View(character);
         }
         public async Task<ActionResult<IList<EquipmentResponse>>> Equipment()

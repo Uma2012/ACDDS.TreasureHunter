@@ -15,9 +15,9 @@ namespace ACDDS.TreasureHunter.Web.Services
         {
             this._treasureHunterRepository = treasureHunterRepository;
         }
-        public async Task<CharacterResponse> GetCharacterAttributes(int id)
+        public async Task<CharacterResponse> GetCharacter(int id)
         {
-            return await _treasureHunterRepository.GetCharacterAttributes(id);
+            return await _treasureHunterRepository.GetCharacter(id);
         }
 
         public async Task<List<CharactersResponse>> GetCharacters()

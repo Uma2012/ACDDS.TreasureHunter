@@ -20,7 +20,7 @@ namespace ACDDS.TreasureHunter.Web.Repository
             this._httpClient = httpClient;
         }       
 
-        public async Task<CharacterResponse> GetCharacterAttributes(int id)
+        public async Task<CharacterResponse> GetCharacter(int id)
         {
             var response = await _httpClient.GetAsync("/api/character/GetCharacter?id="+id);
             var character = await response.Content.ReadAsStringAsync();

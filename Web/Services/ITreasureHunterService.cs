@@ -9,7 +9,7 @@ namespace ACDDS.TreasureHunter.Web.Services
     public interface ITreasureHunterService
     {
         Task<List<CharactersResponse>> GetCharacters();
-        Task<CharacterResponse> GetCharacterAttributes(int id);
+        Task<CharacterResponse> GetCharacter(int id);
         Task<IList<EquipmentResponse>> GetEquipmentList();
         Task<string> PurchaseEquipment(PurchaseRequest purchaseRequest);
     }
