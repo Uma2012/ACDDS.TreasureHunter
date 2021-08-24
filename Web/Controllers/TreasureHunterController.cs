@@ -20,11 +20,11 @@ namespace ACDDS.TreasureHunter.Web.Controllers
         }
         public async Task<ActionResult<CharacterResponse>> Character()
         {
-            //if (_randNumber == -1)
-            //{
+            if (_randNumber == -1)
+            {
                 Random random = new Random();
                 _randNumber = random.Next(0, 3);
-            //}
+            }
 
             var character = await _treasureHunterService.GetCharacterAttributes(_randNumber);
             _characterName = character.Name;
@@ -44,9 +44,9 @@ namespace ACDDS.TreasureHunter.Web.Controllers
 
             
             if (response.ErrorInsufficientValue == "Insufficient Fund")
-                TempData["BRMessage"] = "Insufficient fund";
+                TempData["BRMessage"] = "Sorry,Insufficient fund.";
             else if (response.StatusResponse == "OK")
-                TempData["OkMessage"] = "Equipment Purchased";
+                TempData["OkMessage"] = "Hurry!! You Purchased an Equipment!";
             else if (response.StatusResponse == "NotFound")
                 TempData["NFMessage"] = "Equipment Not found";         
            

@@ -9,10 +9,11 @@ public class TreasureHunterService
 {
     private readonly ILogger<TreasureHunterService> _logger;
     
-    private readonly IList<Character> _character;    
-    private int _characterWealth;
-    private int _characterHitPoints;
-    private int _characterLuck;
+    private readonly IList<Character> _characters;
+    private Character _character;
+    //private int _characterWealth;
+    //private int _characterHitPoints;
+    //private int _characterLuck;
     private readonly IList<Equipment> _characterEquipment;
 
     private readonly IList<Equipment> _shopEquipment;
@@ -20,7 +21,7 @@ public class TreasureHunterService
     public TreasureHunterService(ILogger<TreasureHunterService> logger)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        _character = new List<Character>()
+        _characters = new List<Character>()
         { 
             new Character(0, "Ray", 6, 9, 200),
             new Character(1, "Atlas", 10, 3, 100),
@@ -28,6 +29,7 @@ public class TreasureHunterService
         };
        
         _characterEquipment = new List<Equipment>();
+        _character = new Character();
         _shopEquipment = new List<Equipment>()
         {
             new Equipment("Pantyhose of Giant Strength", EquipmentType.Armor, hpModifier: 5, luckModifier: 0, value: 20),
@@ -39,16 +41,18 @@ public class TreasureHunterService
 
     public Character GetCharacter(int id)
     {
-        var character = _character.SingleOrDefault(c => c.Id ==id);
-        _characterWealth = character.Wealth;
-        _characterHitPoints = character.HitPoints;
-        _characterLuck = character.Luck;        
+        var character = _characters.SingleOrDefault(c => c.Id ==id);
+        //_characterWealth = character.Wealth;
+        //_characterHitPoints = character.HitPoints;
+        //_characterLuck = character.Luck;        
+        _character = character;
         return character;
     }
 
     public int GetCharacterWealth()
     {
-         return _characterWealth;      
+        //return _characterWealth;    
+        return _character.Wealth;
     }
 
     public IEnumerable<Equipment> GetCharacterEquipment()
@@ -66,31 +70,42 @@ public class TreasureHunterService
         var equipment = _shopEquipment.SingleOrDefault(e => e.Id == equipmentId);
         if (equipment == null)
             throw new EquipmentNotFoundException(equipmentId);
-        if (_characterWealth < equipment.Value)
-        {            
-            var character1 = new Character();
-            character1.HitPoints = _characterHitPoints;
-            character1.Luck = _characterLuck;
-            character1.Wealth = _characterWealth;
-            character1.Equipment = _characterEquipment;
-            character1.ErrorInsufficientValue = "Insufficient Fund";
-            return character1;
-           // throw new InsufficientFundsException("Equipment value exceeds the character's wealth.", character1);
-            
+        if (_character.Wealth < equipment.Value)
+        {
+            //var character1 = new Character();
+            //character1.HitPoints = _characterHitPoints;
+            //character1.Luck = _characterLuck;
+            //character1.Wealth = _characterWealth;
+            //character1.Equipment = _characterEquipment;
+            //character1.ErrorInsufficientValue = "Insufficient Fund";
+            //return character1;
+            // throw new InsufficientFundsException("Equipment value exceeds the character's wealth.", character1);
+            _character.ErrorInsufficientValue = "Insufficient Fund";
+            return _character;
         }
 
-        _characterWealth -= equipment.Value;
-        _characterHitPoints += equipment.HpModifier;
-        _characterLuck += equipment.LuckModifier;
+        //_characterWealth -= equipment.Value;
+        //_characterHitPoints += equipment.HpModifier;
+        //_characterLuck += equipment.LuckModifier;
+        //_shopEquipment.Remove(equipment);
+        //_characterEquipment.Add(equipment);
+
+        //var character = new Character();
+        //character.HitPoints = _characterHitPoints;
+        //character.Luck = _characterLuck;
+        //character.Wealth = _characterWealth;
+        //character.Equipment = _characterEquipment;
+        //return character;        
+
+        _character.Wealth -= equipment.Value;
+        _character.HitPoints += equipment.HpModifier;
+        _character.Luck += equipment.LuckModifier;
+        _character.Equipment = _characterEquipment;
         _shopEquipment.Remove(equipment);
         _characterEquipment.Add(equipment);
 
-        var character = new Character();
-        character.HitPoints = _characterHitPoints;
-        character.Luck = _characterLuck;
-        character.Wealth = _characterWealth;
-        character.Equipment = _characterEquipment;
-        return character;        
+
+        return _character;
 
     }
 }

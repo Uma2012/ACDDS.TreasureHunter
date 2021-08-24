@@ -32,6 +32,13 @@ namespace ACDDS.TreasureHunter.Api.Controllers
                 //{
                 //    EquipmentId = request.EquipmentId
                 //};
+                //if(responseCharacter.ErrorInsufficientValue!=null)
+                //{
+                //    return BadRequest(new
+                //    {
+                //        Message="Insuffient funds."
+                //    });
+                //}
                 return Ok(responseCharacter);
             }
             catch (EquipmentNotFoundException)
@@ -40,12 +47,12 @@ namespace ACDDS.TreasureHunter.Api.Controllers
                     Message = "Equipment not found."
                 });
             }
-            catch (InsufficientFundsException)
-            {
-                return BadRequest(new { 
-                    Message = "Insufficient funds."
-                });
-            }
+            //catch (InsufficientFundsException)
+            //{
+            //    return BadRequest(new { 
+            //        Message = "Insufficient funds."
+            //    });
+            //}
         }
     }
 }
